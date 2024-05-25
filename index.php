@@ -16,24 +16,27 @@ class Item {
 }
 
 $items = [
+    new Item("Beras Pandan Wangi 5kg", 60000, "images/beras_pandan_wangi.jpg"),
+    new Item("Minyak Goreng Bimoli 1L", 14000, "images/minyak_goreng_bimoli.jpg"),
+    new Item("Gula Pasir Gulaku 1kg", 12000, "images/gula_gulaku.jpg"),
+    new Item("Telur Ayam Ras 1kg", 22000, "images/telur_ayam.png"),
+    new Item("Susu UHT Ultra Milk 1L", 15000, "images/susu_ultra.jpg"),
+    new Item("Roti Tawar Sari Roti", 12000, "images/roti_sari_roti.jpg"),
+    new Item("Coca Cola 1.5L", 15000, "images/coca_cola.jpg"),
+    new Item("Air Mineral Aqua 600ml", 3000, "images/aqua.png"),
+    new Item("Lays Keripik Kentang 70g", 10000, "images/lays.jpg"),
+    new Item("Sabun Mandi Lifebuoy 90g", 5000, "images/sabun_lifebuoy.jpg"),
+    new Item("Shampoo Pantene 180ml", 20000, "images/shampoo_pantene.jpg"),
+    new Item("Pasta Gigi Pepsodent 190g", 12000, "images/pasta_gigi_pepsodent.jpg"),
+    new Item("Tisu Wajah Paseo 150s", 10000, "images/tisu_paseo.png"),
+    new Item("Tisu Gulung Paseo 10s", 20000, "images/tisu_gulung_paseo.jpg"),
+    new Item("Chitato Keripik Kentang 68g", 9000, "images/chitato.jpg"),
+    new Item("Bumbu Masak Indofood Racik Nasi Goreng 20g", 3000, "images/bumbu_racik.jpg"),
     new Item("Indomie Mi Goreng", 3000, "images/indomie_goreng.jpg"),
-    new Item("Indomie Mi Goreng Rasa Rendang", 3500, "images/indomie_rendang.jpg"),
-    new Item("Indomie Mi Instan Mi Keriting Goreng Spesial", 3000, "images/indomie_goreng_spesial.jpg"),
-    new Item("Indomie Mi Goreng Rasa Ayam Pop", 3000, "images/indomie_ayam_pop.jpg"),
-    new Item("Indomie Hype Abis Mi Goreng Rasa Ayam Geprek", 3500, "images/indomie_ayam_geprek.jpg"),
-    new Item("Indomie Mi Keriting Rasa Ayam Panggang", 3000, "images/indomie_ayam_panggang.jpg"),
-    new Item("Indomie Mi Goreng Satay Flavour", 3000, "images/indomie_satay.jpg"),
-    new Item("Indomie Mi Goreng Hot & Spicy", 3000, "images/indomie_hot_spicy.jpg"),
-    new Item("Indomie Mi Goreng Barbecue Flavour", 3000, "images/indomie_barbecue.jpg"),
-    new Item("Indomie Curry Chicken Soup Flavour", 3000, "images/indomie_curry_chicken.jpg"),
-    new Item("Indomie rasa ayam spesial", 3000, "images/indomie_ayam_spesial.jpg"),
-    new Item("Indomie rasa soto mie", 3000, "images/indomie_soto_mie.jpg"),
-    new Item("Indomie rasa baso sapi", 3000, "images/indomie_baso_sapi.jpg"),
-    new Item("Indomie rasa kaldu udang", 3000, "images/indomie_kaldu_udang.jpg"),
-    new Item("Indomie rasa soto spesial", 3000, "images/indomie_soto_spesial.jpg"),
-    new Item("Indomie rasa kari ayam dengan bawang goreng", 3000, "images/indomie_kari_ayam.jpg"),
-    new Item("Indomie rasa kari ayam", 3000, "images/indomie_kari_ayam.jpg"),
-    new Item("Indomie rasa kaldu ayam", 3000, "images/indomie_kaldu_ayam.jpg")
+    new Item("Detergen Rinso 1kg", 18000, "images/detergen_rinso.jpg"),
+    new Item("Kopi Instan Nescafe 3in1 30g", 2000, "images/nescafe.jpg"),
+    new Item("Teh Celup Sariwangi 25s", 7000, "images/teh_sariwangi.jpg")
+    
 ];
 
 
@@ -64,7 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['reset_cart'])) {
+    if (isset($_POST['reset_cart']) || ) {
+        $_SESSION['cart'] = [];
+    }
+    if (isset($_POST['checkout'])) {
         $_SESSION['cart'] = [];
     }
 }
@@ -91,16 +97,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <div class="row">
             <?php foreach ($items as $item): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="<?php echo $item->image; ?>" class="card-img-top" alt="<?php echo $item->name; ?>">
-                        <div class="card-body">
+                <div class="col-md-4 mb-4 d-flex">
+                    <div class="card h-100 w-100">
+                        <div class="card-img-container" style="height: 400px; overflow: hidden;">
+                            <img src="<?php echo $item->image; ?>" class="card-img-top img-fluid" style="height: 100%; object-fit: cover;" alt="<?php echo $item->name; ?>">
+                        </div>
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title"><?php echo $item->name; ?></h5>
-                            <form method="POST">
-                                <input type="hidden" name="item_name" value="<?php echo $item->name; ?>">
-                                <button type="submit" name="add_to_cart" class="btn btn-primary">Add to Cart</button>
+                            <div class="mt-auto d-flex justify-content-between align-items-center">
+                                <form method="POST" class="me-2">
+                                    <input type="hidden" name="item_name" value="<?php echo $item->name; ?>">
+                                    <button type="submit" name="add_to_cart" class="btn btn-primary">Add to Cart</button>
+                                </form>
                                 <button type="button" class="btn btn-outline-success" disabled>Price: Rp. <?php echo $item->price; ?></button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="modal-footer">
                     <form method="POST">
                         <button type="submit" name="reset_cart" class="btn btn-secondary">Reset Cart</button>
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout</button>
+                        <button type="button" name = "checkout" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout</button>
                     </form>
                 </div>
             </div>
@@ -181,7 +191,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 </html>
+
+
 
