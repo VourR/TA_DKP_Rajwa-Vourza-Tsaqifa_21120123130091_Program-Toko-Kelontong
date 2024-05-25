@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['reset_cart']) || ) {
+    if (isset($_POST['reset_cart'])) {
         $_SESSION['cart'] = [];
     }
     if (isset($_POST['checkout'])) {
