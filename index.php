@@ -66,8 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['reset_cart'])) {
-        $_SESSION['cart'] = [];
-    }
+        $_SESSION['cart'] = [];}
+    if (isset($_POST['remove_last_item'])) {
+        array_pop($_SESSION['cart']);}
 }
 ?>
 
@@ -139,7 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="modal-footer">
                     <form method="POST">
-                        <button type="submit" name="reset_cart" class="btn btn-secondary">Reset Cart</button>
+                        <button type="submit" name="remove_last_item" class="btn btn-secondary">Hapus Item Terakhir</button>
+                        <button type="submit" name="reset_cart" class="btn btn-danger">Reset Cart</button>
                         <button type="button" name="checkout" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout</button>
                     </form>
                 </div>
