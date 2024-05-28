@@ -68,9 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['reset_cart'])) {
         $_SESSION['cart'] = [];
     }
-    if (isset($_POST['checkout'])) {
-        $_SESSION['cart'] = [];
-    }
 }
 ?>
 
@@ -143,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="modal-footer">
                     <form method="POST">
                         <button type="submit" name="reset_cart" class="btn btn-secondary">Reset Cart</button>
-                        <button type="button" name = "checkout" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout</button>
+                        <button type="button" name="checkout" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout</button>
                     </form>
                 </div>
             </div>
@@ -162,8 +159,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p>Item berhasil dipesan! Apakah Anda ingin memesan lagi?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ya</button>
+                    <form method="POST">
+                        <button type="submit" name="reset_cart" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                        <button type="submit" name="reset_cart" class="btn btn-primary" data-bs-dismiss="modal">Ya</button>
+                <form>
                 </div>
             </div>
         </div>

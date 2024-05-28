@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Register</title>
+    <title>Nama Toko</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body class="bg-light">
@@ -101,9 +101,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <label for="password">Password:</label>
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
-                            <div class="buttons text-center" style="margin-top: 5px;">
-                                <button type="submit" name="login" value="Login" class="btn btn-primary">Login</button>
-                                <button type="submit" name="register" value="Register" class="btn btn-secondary">Register</button>
+                            <div class="buttons text-center" style="margin-top: 20px;">
+                                <button type="submit" name="login" value="Login" class="btn btn-primary btn-lg">Login</button>
+                                <button type="submit" name="register" value="Register" class="btn btn-secondary btn-lg">Register</button>
                             </div>
                         </form>
                     </div>
