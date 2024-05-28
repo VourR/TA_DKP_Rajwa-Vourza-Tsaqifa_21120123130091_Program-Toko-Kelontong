@@ -37,20 +37,20 @@ class Auth {
                 exit;
             }
         }
-        return '<div class="alert alert-danger">Invalid Email or Password</div>';
+        return '<div class="alert alert-danger">Email atau Password salah!</div>';
     }
 
     public function register($email, $password) {
         foreach ($this->users as $user) {
             if ($email === $user->getEmail()) {
-                return '<div class="alert alert-danger">Email already registered!</div>';
+                return '<div class="alert alert-danger">Email sudah terdaftar!</div>';
             }
         }
         // Membuat instance User untuk pengguna yang akan diregistrasi
         $newUser = new User($email, $password);
         // Menyimpan informasi pengguna baru ke dalam session
         $this->users[] = $newUser;
-        return '<div class="alert alert-success">Account registered successfully!</div>';
+        return '<div class="alert alert-success">Akun berhasil terdaftar!</div>';
     }
 }
 

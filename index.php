@@ -39,8 +39,6 @@ $items = [
     
 ];
 
-
-
 if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
     $_SESSION['cart'] = []; // Inisialisasi $_SESSION['cart'] sebagai array kosong jika belum ada atau bukan array
 }
@@ -89,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="container d-flex justify-content-between">
             <h1 class="mb-0">Nama Toko</h1>
             <div>
-                <button id="cartButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#cartModal">Cart</button>
+                <button id="cartButton" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#cartModal">Keranjang</button>
                 <button id="logoutButton" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
             </div>
         </div>
@@ -107,9 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="mt-auto d-flex justify-content-between align-items-center">
                                 <form method="POST" class="me-2">
                                     <input type="hidden" name="item_name" value="<?php echo $item->name; ?>">
-                                    <button type="submit" name="add_to_cart" class="btn btn-primary">Add to Cart</button>
+                                    <button type="submit" name="add_to_cart" class="btn btn-primary">Tambah ke Keranjang</button>
                                 </form>
-                                <button type="button" class="btn btn-outline-success" disabled>Price: Rp. <?php echo $item->price; ?></button>
+                                <button type="button" class="btn btn-outline-success" disabled>Rp. <?php echo $item->price; ?></button>
                             </div>
                         </div>
                     </div>
@@ -123,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cartModalLabel">Your Cart</h5>
+                    <h5 class="modal-title" id="cartModalLabel">Keranjang Kamu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
